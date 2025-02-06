@@ -1,3 +1,7 @@
 package.json
 package-lock.json
+<<<<<<< HEAD
 tsconfig.json
+=======
+tsconfig.json
+>>>>>>> 26c3550dbfb60062f16a95a0fd44ac3bd2b6c2eb
