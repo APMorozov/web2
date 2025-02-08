@@ -5,12 +5,6 @@ var docktype;
     docktype["snils"] = "\u0421\u041D\u0418\u041B\u0421";
 })(docktype || (docktype = {}));
 class Owner {
-    getSurname() {
-        return this._surname;
-    }
-    getName() {
-        return this._name;
-    }
     constructor(surname, name, subname, birthday, docktype, dock_series, dock_number) {
         this._surname = surname;
         this._name = name;
@@ -19,6 +13,27 @@ class Owner {
         this._docktype = docktype;
         this._dock_series = dock_series;
         this._dock_number = dock_number;
+    }
+    get surname() {
+        return this._surname;
+    }
+    get name() {
+        return this._name;
+    }
+    get subname() {
+        return this._subname;
+    }
+    get birthday() {
+        return this._birthday;
+    }
+    get docktype() {
+        return this._docktype;
+    }
+    get dock_series() {
+        return this._dock_series;
+    }
+    get dock_number() {
+        return this._dock_number;
     }
     getInfo() {
         return 'Фамилия: ' + this._surname + ' Имя: ' + this._name + ' Отчество: ' + this._subname + ' Дата рождения: ' + this._birthday + ' Тип документа: ' + this._docktype + ' Серия: ' + this._dock_series + ' Номер: ' + this._dock_number;
@@ -32,6 +47,24 @@ class Vechicle {
         this._vin_number = vin_number;
         this._reg_number = reg_number;
         this._owner_info = owner_info;
+    }
+    get mark() {
+        return this._mark;
+    }
+    get model() {
+        return this._model;
+    }
+    get release_date() {
+        return this._release_date;
+    }
+    get vin_number() {
+        return this._vin_number;
+    }
+    get reg_number() {
+        return this._reg_number;
+    }
+    get owner_info() {
+        return this._owner_info;
     }
     getCarInfo() {
         return 'Марка: ' + this._mark + ' Модель: ' + this._model + ' Дата выпуска: ' + this._release_date + ' Вин номер: ' + this._vin_number + ' Регистрационный номер: ' + this._reg_number;
@@ -61,6 +94,12 @@ class Car extends Vechicle {
         this._car_body = car_body;
         this._car_class = car_class;
     }
+    get car_body() {
+        return this._car_body;
+    }
+    get car_class() {
+        return this._car_class;
+    }
     getCarInfo() {
         return super.getCarInfo() + " Тип кузова: " + this._car_body + " Класс Автомобиля: " + this._car_class;
     }
@@ -73,6 +112,12 @@ class Motobike extends Vechicle {
         this._frame_type = frame_type;
         this._for_sport = for_sport;
     }
+    get frame_type() {
+        return this._frame_type;
+    }
+    get for_sport() {
+        return this._for_sport;
+    }
     getCarInfo() {
         return super.getCarInfo() + " Тип рамы: " + this._frame_type + " Для спорта: " + this._for_sport;
     }
@@ -83,6 +128,12 @@ class VechicleStorage {
     constructor(all_Vehicles, creation_data) {
         this._all_Vehicles = all_Vehicles;
         this._creation_data = creation_data;
+    }
+    get creation_data() {
+        return this._creation_data;
+    }
+    get all_Vehicles() {
+        return this._all_Vehicles;
     }
     getAllVehicle() {
         return this._all_Vehicles;
