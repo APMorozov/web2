@@ -1,22 +1,25 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Transport_1 = require("./Transport");
-var Owner = Transport_1.Transport.Owner;
-var Vechicle = Transport_1.Transport.Vechicle;
-var Car = Transport_1.Transport.Car;
-var Motobike = Transport_1.Transport.Motobike;
-var VechicleStorage = Transport_1.Transport.VechicleStorage;
-var docktype = Transport_1.Transport.docktype;
-var car_body = Transport_1.Transport.car_body;
-var car_class = Transport_1.Transport.car_class;
-let Danel = new Owner('Kud', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
-console.log(Danel.getInfo());
-let Cool_Car = new Vechicle('Toyota', 'Land Cruiser Prado', '2013', 'VIN23122321313', 'E777KH777', Danel);
-console.log(Cool_Car.getCarInfo());
-let newCool_Car = new Car('Toyota', 'Camry 3.5', '2013', 'VIN23122321313', 'E777EE777', Danel, car_body.sedan, car_class.comfort);
-console.log(newCool_Car.getCarInfo());
-let Cool_Motobile = new Motobike('Yamaha', 'R1', '2007', 'VIN231434221313', 'H777HH777', Danel, "Монокок", true);
-console.log(Cool_Motobile.getCarInfo());
-let arr_veh = [Cool_Car, newCool_Car, Cool_Motobile];
-let Veh_Storage = new VechicleStorage(arr_veh, '30.03.2005');
-console.log(Veh_Storage.getAllVehicle());
+const data = [];
+const record = (param) => {
+    data.push(param);
+    console.log('Record: ' + param + ' added!');
+    setTimeout(() => {
+        const index = data.indexOf(param);
+        if (index > -1) {
+            data.splice(index, 1);
+            console.log('Record: ' + param + ' removed!');
+        }
+    }, 10000);
+};
+record("Test1");
+record("Test2");
+function printFunc(str) {
+    str = 'Your string: ' + str;
+    function addSubStr(name) {
+        console.log(str);
+        console.log("Your name: ", name);
+    }
+    return addSubStr;
+}
+const func = printFunc("My string");
+func("Alex");
