@@ -1,67 +1,33 @@
-import {Transport} from "./Transport";
+import {Transport} from './Transport';
+import IOwner = Transport.IOwner;
 import Owner = Transport.Owner;
+import IVechicle = Transport.IVechicle;
 import Vechicle = Transport.Vechicle;
 import ICar = Transport.ICar;
+import Car = Transport.Car;
+import IMotobike = Transport.IMotobike;
+import Motobike = Transport.Motobike;
+import IVechicleStorage = Transport.IVechicleStorage;
+import VechicleStorage = Transport.VechicleStorage;
 import docktype = Transport.docktype;
 import car_body = Transport.car_body;
 import car_class = Transport.car_class;
 
+let Danel1:Owner = new Owner('AAAdel', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
+let Danel2:Owner = new Owner('BBBpel', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
+let Danel3:Owner = new Owner('CCCdel', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
+let Danel4:Owner = new Owner('DDDpel', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
 
-function sealed(constructor:Function){
-    console.log("Class was sealed");
-    Object.seal(constructor);
-    Object.seal(constructor.prototype);
-}
-
-function toBig(target:Object, propertyName:string, descriptor:PropertyDescriptor){
-    console.log("Method is decorate");
-    const originalGetter = descriptor.get;
-        if (originalGetter) {
-            descriptor.get = function () {
-            const result: string = originalGetter.apply(this);
-            return result.toUpperCase();
-        };
-    }
-}
-
-@sealed
-class Car extends Vechicle implements ICar{
-    private _car_body:car_body;
-    private _car_class:car_class;
-
-    constructor(mark:string, model:string, release_date:string, vin_number:string, reg_number:string, owner_info:Owner, car_body:car_body, car_class:car_class){
-        super(mark, model, release_date, vin_number, reg_number, owner_info);
-        this._car_body = car_body;
-        this._car_class = car_class;
-    }
-
-    get car_body(): car_body{
-        return this._car_body;
-    }
-    @toBig
-    get car_class(): car_class{
-        return this._car_class;
-    }
-
-    getCarInfo(): string {
-        return super.getCarInfo() + " Тип кузова: " + this._car_body + " Класс Автомобиля: " + this._car_class + " Электрический: ";
-    }
-}
-
-
-let Danel:Owner = new Owner('Kud', 'Danel', 'Yirievch', '02.01.2005', docktype.passpart, '33333', '4444');
-console.log(Danel.getInfo());
-let newCool_Car: Car = new Car('Toyota', 'Camry 3.5', '2013', 'VIN23122321313', 'E777EE777', Danel, car_body.sedan, car_class.comfort);
-console.log(newCool_Car.getCarInfo());
-console.log(newCool_Car.car_class);
-console.log(newCool_Car.car_body);
-
-
-
-try {
-    (Car.prototype as any).fly = function() {
-      console.log("Flying!");
-    };
-  } catch (e: any) {
-    console.error("Error adding property:", e.message);
-  }
+let Cool_Car1: Car = new Car('Toyota1', 'Camry 3.5', '2013', 'VIN23122321313', 'E777EE777', Danel1, car_body.sedan, car_class.comfort);
+let Cool_Car2: Car = new Car('Toyota2', 'Camry 3.5', '2013', 'VIN23122321313', 'E777EE777', Danel2, car_body.sedan, car_class.comfort);
+let Cool_Motobile3: Motobike = new Motobike('Yamaha3', 'R1', '2007', 'VIN231434221313', 'H777HH777', Danel3, "Монокок", true);
+let Cool_Motobile4: Motobike = new Motobike('Yamaha4', 'R1', '2007', 'VIN231434221313', 'H777HH777', Danel4, "Монокок", true);
+let arr_veh: Vechicle[] = [Cool_Car2, Cool_Car1, Cool_Motobile4, Cool_Motobile3]; //индексы около транспортных средств указывают на их нахождение в отсортированом массиве
+let Veh_Storage:VechicleStorage<Vechicle> = new VechicleStorage(arr_veh, '30.03.2005');
+console.log("Стандартной массив");
+console.log("Задание номер 1");
+console.log(Veh_Storage);
+console.log(Veh_Storage.sortBySurname());
+console.log('Задание номер 2)');
+console.log(Veh_Storage.getSurnamesWithParameter("DEL"));
+console.log(Cool_Motobile3.getFrame_type_and_for_sport());

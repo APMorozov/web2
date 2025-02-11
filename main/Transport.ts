@@ -194,6 +194,12 @@ export namespace Transport{
         getCarInfo(): string {
             return super.getCarInfo() + " Тип рамы: " + this._frame_type + " Для спорта: " + this._for_sport;
         }
+
+        getFrame_type_and_for_sport():[boolean, string]{
+            let tup:[boolean, string];
+            tup = [this.for_sport, this.frame_type];
+            return tup;
+        }
     }
 
     export class VechicleStorage<T extends Vechicle> implements IVechicleStorage<T> {
@@ -215,6 +221,30 @@ export namespace Transport{
     
         getAllVehicle(): Array<T> {
             return this._all_Vehicles;
+        }
+
+        sortBySurname(): Array<T>{
+            let sortArr:Array<T> = this._all_Vehicles;
+            for(let j=0; j < (sortArr.length - 1); j++){
+                for(let i=0; i < (sortArr.length - 1); i++){
+                    if(sortArr[i].owner_info.surname > sortArr[i+1].owner_info.surname){
+                        let buffer:T = sortArr[i];
+                        sortArr[i] = sortArr[i+1];
+                        sortArr[i+1] = buffer;
+                    }
+                }
+            }
+            return sortArr;
+        }
+
+        getSurnamesWithParameter(parameter:string): Array<T>{
+            let acceptable_array: Array<T> = [];
+            for(let i=0; i < (this._all_Vehicles.length - 1); i++){
+                if(this._all_Vehicles[i].owner_info.surname.toLowerCase().includes(parameter.toLowerCase())){
+                    acceptable_array.push(this._all_Vehicles[i]);
+                }
+            }
+            return acceptable_array;
         }
     
     }
