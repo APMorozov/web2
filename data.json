@@ -1,0 +1,12 @@
+{
+    "car" : {
+        "brand" : "Lada",
+        "model" : 21123,
+        "cool_car" : true,
+        "options" : {
+            "color" : "Black",
+            "year" : "2007"
+        },
+        "features" : ["NoABS", "NoAirbag", "Have nothing"]
+    }
+}
